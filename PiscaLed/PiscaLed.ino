@@ -1,4 +1,6 @@
-#define Led D3
+//Enciende y apaga un led un tiempo predeterminado
+#define Led 2
+#define tiempo 1000
 
 void setup() {
   pinMode(Led, OUTPUT);     
@@ -7,7 +9,7 @@ void setup() {
 
 void loop() {
   digitalWrite(Led, LOW);     
-  delay(1000);                      
+  delay(tiempo);                      
   digitalWrite(Led, HIGH); 
-  delay(2000);
+  delay(tiempo);
 }                     
