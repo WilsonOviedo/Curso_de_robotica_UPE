@@ -1,31 +1,26 @@
-//Pines donde estan conectados los Leds
+#define LuzRoja 2
+#define LuzAmarillo 3
+#define LuzVerde 4
 
-#define LuzRoja       2
-#define LuzAmarilla   3
-#define LuzVerde      4
-
-//Tiempos de encendidos
-#define TiempoRojo      3000
-#define TiempoAmarillo  1000
-#define TiempoVerde     3000
 
 void setup() {
+  
   pinMode(LuzRoja,OUTPUT);
-  pinMode(LuzAmarilla,OUTPUT);
+  pinMode(LuzAmarillo,OUTPUT);
   pinMode(LuzVerde,OUTPUT);
 
 }
 
 void loop() {
-  
-  digitalWrite(LuzRoja,HIGH);
-  delay(TiempoRojo);
-  digitalWrite(LuzRoja,LOW);
-  digitalWrite(LuzAmarilla,HIGH);
-  delay(TiempoAmarillo);
-  digitalWrite(LuzAmarilla,LOW);
-  digitalWrite(LuzVerde,HIGH);
-  delay(TiempoVerde);
-  digitalWrite(LuzVerde,HIGH);
-  
+
+  digitalWrite(LuzRoja,HIGH);   //Encendemos luz roja
+  delay(2000);                  //Esperamos 2 seg
+  digitalWrite(LuzRoja,LOW);    //Apagamos luz roja
+  digitalWrite(LuzAmarillo,HIGH);//Encedemos luz amarilla
+  delay(500);                   //Esperamos medio segundo
+  digitalWrite(LuzAmarillo,LOW);//apagamos luz amarilla
+  digitalWrite(LuzVerde,HIGH);//Encedemos luz verde
+  delay(2000);                //Esperamos 2 segundos
+  digitalWrite(LuzVerde,LOW); ////Encedemos luz verde
+  delay(500);                 //Esperamos medio segundo     
 }
