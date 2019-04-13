@@ -1,8 +1,8 @@
 //Pines donde estan conectados los Leds
 
-#define LuzRoja       D0
-#define LuzAmarilla   D1
-#define LuzVerde      D2
+#define LuzRoja       2
+#define LuzAmarilla   3
+#define LuzVerde      4
 
 //Tiempos de encendidos
 #define TiempoRojo      3000
