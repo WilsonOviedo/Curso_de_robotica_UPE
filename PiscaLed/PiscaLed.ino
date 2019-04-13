@@ -1,15 +1,17 @@
+//Shopping Lai Lai 5to Piso **RaioLaser**
+
 //Enciende y apaga un led un tiempo predeterminado
-#define Led 2
-#define tiempo 1000
+void setup(){
+  
+  pinMode(13,OUTPUT);
+  
+  }
 
-void setup() {
-  pinMode(Led, OUTPUT);     
-}
+  void loop(){
 
-
-void loop() {
-  digitalWrite(Led, LOW);     
-  delay(tiempo);                      
-  digitalWrite(Led, HIGH); 
-  delay(tiempo);
-}                     
+      digitalWrite(13,HIGH);  //Encender el led 
+      delay(1000);            //Esperar 1 segundo
+      digitalWrite(13,LOW);   //Apagar el led
+      delay(1000);            //Esperar 1 segundo
+    
+    }
