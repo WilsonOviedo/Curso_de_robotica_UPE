@@ -9,11 +9,11 @@
 #include <WiFiClient.h> 
 #include <ESP8266WebServer.h>
 
-String command;             //String de captura de comandos.
-int velocidadAuto = 800;         // 400 - 1023.
+String command;                   //String de captura de comandos.
+int velocidadAuto = 800;           // 400 - 1023.
 int coeficiente_Velocidad = 3;
 
-const char* ssid = "NodeMCU Car";
+const char* ssid = "Willy Car";
 ESP8266WebServer server(80);
 
 void setup() {
