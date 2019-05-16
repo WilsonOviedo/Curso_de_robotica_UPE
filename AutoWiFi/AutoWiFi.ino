@@ -1,7 +1,6 @@
-// http://arduino.esp8266.com/stable/package_esp8266com_index.json
-#define ENA   14          // Enable/speed motor Derecha        GPIO14(D5)
-#define ENB   12          // Enable/speed motor Izquierda         GPIO12(D6)
-#define IN_1  15          // L298N in1 motor Derecha           GPIO15(D8)
+#define ENA 1
+#define ENB 1
+#define IN_1  12          // L298N in1 motor Derecha           GPIO12(D6)
 #define IN_2  13          // L298N in2 motor Derecha           GPIO13(D7)
 #define IN_3  2           // L298N in3 motor Izquierda            GPIO2(D4)
 #define IN_4  0           // L298N in4 motor Izquierda            GPIO0(D3)
