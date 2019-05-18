@@ -10,7 +10,7 @@
 #define B1 10
 #define B2 11
 
-#define velocidad 200
+#define velocidad 170
 
 #define lineaMax 1023
 #define lineaMin 200
@@ -36,6 +36,7 @@ void frente(){
   analogWrite(A2,0);
   analogWrite(B2,0);  
   }  
+  
   void derechaF(){
     Serial.println("Derecha Fuerte");
   analogWrite(A1,velocidad);
@@ -43,6 +44,7 @@ void frente(){
   analogWrite(A2,0);
   analogWrite(B2,0);  
   }
+  
     void izquierdaF(){
     Serial.println("Izquierda Fuerte");
   analogWrite(A1,velocidad/3);
