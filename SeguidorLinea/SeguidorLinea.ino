@@ -108,8 +108,8 @@ if(d1<lineaMin && d2>lineaMin&& d3>lineaMin&& d4<lineaMin){
     }
 
 void loop() {
-sensor();
-/*switch(sensor())
+//sensor();
+switch(sensor())
 {
     case 1:
     izquierdaF();
@@ -131,6 +131,6 @@ sensor();
     izquierdaS();
     break;  
   }
-  */
+  
 delay(100);
 }
