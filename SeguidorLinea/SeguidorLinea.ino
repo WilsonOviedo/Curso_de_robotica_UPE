@@ -1,19 +1,19 @@
 //Pines de sensores
 #define D1 A0
-#define D2 A1
-#define D3 A2
-#define D4 A3
+#define D2 A3
+#define D3 A4
+#define D4 A5
 
 //Definir puenteH
 #define A1 5
-#define A2 6
-#define B1 10
-#define B2 11
+#define A2 11
+#define B1 6
+#define B2 10
 
-#define velocidad 170
+#define velocidad 130
 
 #define lineaMax 1023
-#define lineaMin 200
+#define lineaMin 800
 
 void setup() {
   Serial.begin(9600);
@@ -32,28 +32,28 @@ void setup() {
 void frente(){
     Serial.println("Frente");
   analogWrite(A1,velocidad);
-  analogWrite(B1,velocidad);
-  analogWrite(A2,0);
+  analogWrite(B1,0);
+  analogWrite(A2,velocidad);
   analogWrite(B2,0);  
   }  
   
-  void derechaF(){
+  void izquierdaF(){
     Serial.println("Derecha Fuerte");
   analogWrite(A1,velocidad);
-  analogWrite(B1,velocidad/3);
-  analogWrite(A2,0);
+  analogWrite(B1,0);
+  analogWrite(A2,velocidad/3);
   analogWrite(B2,0);  
   }
   
-    void izquierdaF(){
+    void derechaF(){
     Serial.println("Izquierda Fuerte");
-  analogWrite(A1,velocidad/3);
-  analogWrite(B1,velocidad);
-  analogWrite(A2,0);
+  analogWrite(A1,0);
+  analogWrite(B1,velocidad/3);
+  analogWrite(A2,velocidad);
   analogWrite(B2,0);  
   }
 
-   void derechaS(){
+   void izquierdaS(){
     Serial.println("Derecha Suave");
   analogWrite(A1,velocidad);
   analogWrite(B1,velocidad/2);
@@ -62,12 +62,12 @@ void frente(){
   
   }
 
-    void izquierdaS(){
+    void derechaS(){
     Serial.println("Izquierda Suave");
-  analogWrite(A1,velocidad/2);
-  analogWrite(B1,velocidad);
-  analogWrite(A2,0);
+  analogWrite(A2,velocidad/2);
   analogWrite(B2,0);
+  analogWrite(A1,velocidad);
+  analogWrite(B1,0);
   
   }
 
@@ -108,8 +108,8 @@ if(d1<lineaMin && d2>lineaMin&& d3>lineaMin&& d4<lineaMin){
     }
 
 void loop() {
-//sensor();
-switch(sensor())
+sensor();
+/*switch(sensor())
 {
     case 1:
     izquierdaF();
@@ -131,6 +131,6 @@ switch(sensor())
     izquierdaS();
     break;  
   }
-  
-//delay(100);
+  */
+delay(100);
 }
