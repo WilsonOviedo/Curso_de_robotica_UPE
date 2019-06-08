@@ -132,5 +132,5 @@ switch(sensor())
     break;  
   }
   
-delay(100);
+//delay(100);
 }
