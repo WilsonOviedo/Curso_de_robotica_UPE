@@ -1,12 +1,19 @@
 /*
   Pines de conexion del pueste H
 */
-#define pinA1 5
-#define pinA2 6
-#define pinB1 10
-#define pinB2 11
+
+#define pinIN1 5
+#define pinIN2 6
+
+#define pinIN3 10
+#define pinIN4 11
+
+#define Blanco HIGH
+#define Negro LOW
 
 #define velocidad 255  //Velocidad 0=0; maxima=255
+
+#define distanciaMinima 30 //distancia minima entre el oponente
 
 /*
   Pines de conexion del sensor ultrasonico
@@ -17,13 +24,29 @@
 #define pinTrigFrente   7
 #define pinEchoFrente   8
 
+//Pines de sensores de linea
+#define pinLineaFrente  9
+#define pinLineaAtras   4
+
 void setup() {
-  // put your setup code here, to run once:
+  
 
 }
 
 void loop() {
-  leerDistancia();
+  if(leerLinea(pinLineaFrente)==Negro&&leerLinea(pinLineaAtras)==Negro){
+   //Busqueda del contrincante
+    do{
+      girarDerecha();
+      }while(leerDistancia(pinTrigFrente,pinEchoFrente)>distanciaMinima); 
+      
+    //Ataques
+    if(leerDistancia(pinTrigFrente,pinEchoFrente)<=distanciaMinima){
+      
+      }
+
+         
+    }
 
 }
 /*===Funciones de funcionamiento===*/
@@ -35,39 +58,46 @@ int leerDistancia(int pinTrig, int pinEcho) {
   digitalWrite(pinTrig , LOW);
   int dure = pulseIn(pinEcho, HIGH);
   int dist = (dure / 2) / 29.1;
-  Serial.println(dist);
   return dist;
 }
 
 //Funciones de motores
 //Mover hacia el frente
 void moverFrente() {
-  analogWrite (pinA1, velocidad);
-  analogWrite (pinA2, 0);
-  analogWrite (pinB1, velocidad);
-  analogWrite (pinB2, 0);
+  analogWrite (pinIN1, velocidad);
+  analogWrite (pinIN2, 0);
+  analogWrite (pinIN3, velocidad);
+  analogWrite (pinIN4, 0);
 }
 
 //Mover hacia el atras
 void moverAtras() {
-  analogWrite (pinA1, 0);
-  analogWrite (pinA2, velocidad);
-  analogWrite (pinB1, 0);
-  analogWrite (pinB2, velocidad);
+  analogWrite (pinIN1, 0);
+  analogWrite (pinIN2, velocidad);
+  analogWrite (pinIN3, 0);
+  analogWrite (pinIN4, velocidad);
 }
 
 //Girar hacia la derecha
 void girarDerecha() {
-  analogWrite (pinA1, 0);
-  analogWrite (pinA2, velocidad);
-  analogWrite (pinB1, velocidad);
-  analogWrite (pinB2, 0);
+  analogWrite (pinIN1, 0);
+  analogWrite (pinIN2, velocidad);
+  analogWrite (pinIN3, velocidad);
+  analogWrite (pinIN4, 0);
 }
 
 //Girar hacia la izquierda
 void girarIzquierda() {
-  analogWrite (pinA1, velocidad);
-  analogWrite (pinA2, 0);
-  analogWrite (pinB1, 0);
-  analogWrite (pinB2, velocidad);
+  analogWrite (pinIN1, velocidad);
+  analogWrite (pinIN2, 0);
+  analogWrite (pinIN3, 0);
+  analogWrite (pinIN4, velocidad);
 }
+//Leer Sensores
+bool leerLinea(int pinSensor){
+  if(digitalRead(pinSensor)==Blanco){
+    return true;
+    }else{
+      return false;
+      }
+  }
