@@ -8,8 +8,8 @@
 #define pinIN3 10
 #define pinIN4 11
 
-#define Blanco HIGH
-#define Negro LOW
+#define Blanco true
+#define Negro false
 
 #define velocidad 255  //Velocidad 0=0; maxima=255
 
@@ -29,7 +29,20 @@
 #define pinLineaAtras   4
 
 void setup() {
-  
+//Entradas
+Serial.begin();
+pinMode(pinTrigAtras,OUTPUT);
+pinMode(pinTrigFrente,OUTPUT);
+pinMode(pinIN1,OUTPUT);
+pinMode(pinIN2,OUTPUT);
+pinMode(pinIN3,OUTPUT);
+pinMode(pinIN4,OUTPUT);
+
+//Salidas
+pinMode(pinEchoFrente,INPUT);
+pinMode(pinEchoAtras,INPUT);
+pinMode(pinLineaFrente,INPUT);
+pinMode(pinLineaAtras,INPUT);
 
 }
 
@@ -87,6 +100,7 @@ int leerDistancia(int pinTrig, int pinEcho) {
 //Funciones de motores
 //Mover hacia el frente
 void moverFrente() {
+  Serial.print("Frente");
   analogWrite (pinIN1, velocidad);
   analogWrite (pinIN2, 0);
   analogWrite (pinIN3, velocidad);
@@ -95,6 +109,7 @@ void moverFrente() {
 
 //Mover hacia el atras
 void moverAtras() {
+  Serial.print("Atras");
   analogWrite (pinIN1, 0);
   analogWrite (pinIN2, velocidad);
   analogWrite (pinIN3, 0);
@@ -103,6 +118,7 @@ void moverAtras() {
 
 //Girar hacia la derecha
 void girarDerecha() {
+  Serial.print("Girar derecha");
   analogWrite (pinIN1, 0);
   analogWrite (pinIN2, velocidad);
   analogWrite (pinIN3, velocidad);
@@ -111,6 +127,7 @@ void girarDerecha() {
 
 //Girar hacia la izquierda
 void girarIzquierda() {
+  Serial.print("Girar izquierda");
   analogWrite (pinIN1, velocidad);
   analogWrite (pinIN2, 0);
   analogWrite (pinIN3, 0);
@@ -118,7 +135,7 @@ void girarIzquierda() {
 }
 //Leer Sensores
 bool leerLinea(int pinSensor){
-  if(digitalRead(pinSensor)==Blanco){
+  if(digitalRead(pinSensor)==HIGH){
     return true;
     }else{
       return false;
