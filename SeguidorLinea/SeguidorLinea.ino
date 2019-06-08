@@ -38,35 +38,35 @@ void frente(){
   }  
   
   void izquierdaF(){
-    Serial.println("Derecha Fuerte");
+    Serial.println("Izquierda Fuerte");
   analogWrite(A1,velocidad);
   analogWrite(B1,0);
-  analogWrite(A2,velocidad/3);
-  analogWrite(B2,0);  
+  analogWrite(A2,0);
+  analogWrite(B2,velocidad/3);  
+  }
+
+  void izquierdaS(){
+    Serial.println("Izquierda Suave");
+  analogWrite(A1,velocidad);
+  analogWrite(B1,0);
+  analogWrite(A2,0);
+  analogWrite(B2,velocidad/2);
+  
   }
   
     void derechaF(){
-    Serial.println("Izquierda Fuerte");
-  analogWrite(A1,0);
-  analogWrite(B1,velocidad/3);
-  analogWrite(A2,velocidad);
-  analogWrite(B2,0);  
-  }
-
-   void izquierdaS(){
-    Serial.println("Derecha Suave");
-  analogWrite(A1,velocidad);
-  analogWrite(B1,velocidad/2);
+    Serial.println("Derecha Fuerte");
+  analogWrite(A1,velocidad/3);
+  analogWrite(B1,0);
   analogWrite(A2,0);
-  analogWrite(B2,0);
-  
+  analogWrite(B2,velocidad);  
   }
 
     void derechaS(){
-    Serial.println("Izquierda Suave");
-  analogWrite(A2,velocidad/2);
-  analogWrite(B2,0);
-  analogWrite(A1,velocidad);
+    Serial.println("Derecha Suave");
+  analogWrite(A2,0);
+  analogWrite(B2,velocidad);
+  analogWrite(A1,velocidad/2);
   analogWrite(B1,0);
   
   }
@@ -76,14 +76,14 @@ void frente(){
     int d2=analogRead(D2);  //Sensor medio derecha
     int d3=analogRead(D3);  //Sensor medio izquierda
     int d4=analogRead(D4);  //Sensor izquierda
-  Serial.print("\t");
+ /* Serial.print("\t");
   Serial.print(d1);
   Serial.print("\t");
   Serial.print(d2);
   Serial.print("\t");
   Serial.print(d3);
   Serial.print("\t");
-  Serial.println(d4);
+  Serial.println(d4);*/
   
     if(d1>lineaMin && d2<lineaMin&& d3<lineaMin&& d4<lineaMin){
       return 1;
