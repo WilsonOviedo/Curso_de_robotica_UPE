@@ -33,8 +33,8 @@ void frente(){
     Serial.println("Frente");
   analogWrite(A1,velocidad);
   analogWrite(B1,0);
-  analogWrite(A2,velocidad);
-  analogWrite(B2,0);  
+  analogWrite(A2,0);
+  analogWrite(B2,velocidad);  
   }  
   
   void izquierdaF(){
