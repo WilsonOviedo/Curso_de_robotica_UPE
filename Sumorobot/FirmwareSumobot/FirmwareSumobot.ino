@@ -34,19 +34,42 @@ void setup() {
 }
 
 void loop() {
+  
   if(leerLinea(pinLineaFrente)==Negro&&leerLinea(pinLineaAtras)==Negro){
-   //Busqueda del contrincante
+      //Busqueda del contrincante
     do{
       girarDerecha();
       }while(leerDistancia(pinTrigFrente,pinEchoFrente)>distanciaMinima); 
       
     //Ataques
     if(leerDistancia(pinTrigFrente,pinEchoFrente)<=distanciaMinima){
-      
+      moverFrente();
       }
 
-         
+      do{
+        
+      girarIzquierda();
+      
+      }while(leerDistancia(pinTrigAtras,pinEchoAtras)>distanciaMinima); 
+
+      if(leerDistancia(pinTrigAtras,pinEchoAtras)<=distanciaMinima){
+      moverAtras();
+      }
     }
+    
+    if(leerLinea(pinLineaFrente)==Blanco){
+      moverAtras();
+      delay(1000);
+      girarDerecha();
+      delay(1000);
+      }
+
+      if(leerLinea(pinLineaAtras)==Blanco){
+      moverFrente();
+      delay(1000);
+      girarIzquierda();
+      delay(1000);
+      }
 
 }
 /*===Funciones de funcionamiento===*/
