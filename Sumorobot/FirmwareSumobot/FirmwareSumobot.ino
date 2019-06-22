@@ -30,7 +30,7 @@
 
 void setup() {
 //Entradas
-Serial.begin();
+Serial.begin(9600);
 pinMode(pinTrigAtras,OUTPUT);
 pinMode(pinTrigFrente,OUTPUT);
 pinMode(pinIN1,OUTPUT);
@@ -44,9 +44,11 @@ pinMode(pinEchoAtras,INPUT);
 pinMode(pinLineaFrente,INPUT);
 pinMode(pinLineaAtras,INPUT);
 
+//delay(5000);    //retardo de 5 segundos para inciar la pelea
 }
 
-void loop() {
+void loop() {  
+  //leerDistancia(pinTrigAtras,pinEchoAtras);
   
   if(leerLinea(pinLineaFrente)==Negro&&leerLinea(pinLineaAtras)==Negro){
       //Busqueda del contrincante
@@ -85,6 +87,9 @@ void loop() {
       }
 
 }
+
+
+
 /*===Funciones de funcionamiento===*/
 
 //Funcion de lectura de sensores
@@ -94,13 +99,15 @@ int leerDistancia(int pinTrig, int pinEcho) {
   digitalWrite(pinTrig , LOW);
   int dure = pulseIn(pinEcho, HIGH);
   int dist = (dure / 2) / 29.1;
+  Serial.print("Distacia: ");
+  Serial.println(dist);
   return dist;
 }
 
 //Funciones de motores
 //Mover hacia el frente
 void moverFrente() {
-  Serial.print("Frente");
+  Serial.println("Frente");
   analogWrite (pinIN1, velocidad);
   analogWrite (pinIN2, 0);
   analogWrite (pinIN3, velocidad);
@@ -109,7 +116,7 @@ void moverFrente() {
 
 //Mover hacia el atras
 void moverAtras() {
-  Serial.print("Atras");
+  Serial.println("Atras");
   analogWrite (pinIN1, 0);
   analogWrite (pinIN2, velocidad);
   analogWrite (pinIN3, 0);
@@ -118,7 +125,7 @@ void moverAtras() {
 
 //Girar hacia la derecha
 void girarDerecha() {
-  Serial.print("Girar derecha");
+  Serial.println("Girar derecha");
   analogWrite (pinIN1, 0);
   analogWrite (pinIN2, velocidad);
   analogWrite (pinIN3, velocidad);
@@ -127,7 +134,7 @@ void girarDerecha() {
 
 //Girar hacia la izquierda
 void girarIzquierda() {
-  Serial.print("Girar izquierda");
+  Serial.println("Girar izquierda");
   analogWrite (pinIN1, velocidad);
   analogWrite (pinIN2, 0);
   analogWrite (pinIN3, 0);
