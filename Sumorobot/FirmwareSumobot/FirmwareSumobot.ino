@@ -57,8 +57,9 @@ void loop() {
       }while(leerDistancia(pinTrigFrente,pinEchoFrente)>distanciaMinima); 
       
     //Ataques
-    if(leerDistancia(pinTrigFrente,pinEchoFrente)<=distanciaMinima){
+    while(leerDistancia(pinTrigFrente,pinEchoFrente)<=distanciaMinima){
       moverFrente();
+      delay(50);
       }
 
       do{
@@ -67,12 +68,13 @@ void loop() {
       
       }while(leerDistancia(pinTrigAtras,pinEchoAtras)>distanciaMinima); 
 
-      if(leerDistancia(pinTrigAtras,pinEchoAtras)<=distanciaMinima){
+      while(leerDistancia(pinTrigAtras,pinEchoAtras)<=distanciaMinima&&leerLinea(pinLineaFrente)==Negro&&leerLinea(pinLineaAtras)==Negro){
       moverAtras();
+       delay(50);
       }
     }
     
-    if(leerLinea(pinLineaFrente)==Blanco){
+    if(leerLinea(pinLineaFrente)==Blanco&&leerLinea(pinLineaFrente)==Negro&&leerLinea(pinLineaAtras)==Negro){
       moverAtras();
       delay(1000);
       girarDerecha();
@@ -85,7 +87,6 @@ void loop() {
       girarIzquierda();
       delay(1000);
       }
-
 }
 
 
@@ -143,8 +144,10 @@ void girarIzquierda() {
 //Leer Sensores
 bool leerLinea(int pinSensor){
   if(digitalRead(pinSensor)==HIGH){
+    Serial.println("Linea ON");
     return true;
     }else{
+      Serial.println("Linea OFF");
       return false;
       }
   }
