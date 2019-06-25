@@ -18,11 +18,11 @@
 /*
   Pines de conexion del sensor ultrasonico
 */
-#define pinTrigAtras    2
-#define pinEchoAtras    3
+#define pinTrigAtras    7
+#define pinEchoAtras    8
 
-#define pinTrigFrente   7
-#define pinEchoFrente   8
+#define pinTrigFrente   2
+#define pinEchoFrente   3
 
 //Pines de sensores de linea
 #define pinLineaFrente  9
@@ -44,20 +44,22 @@ pinMode(pinEchoAtras,INPUT);
 pinMode(pinLineaFrente,INPUT);
 pinMode(pinLineaAtras,INPUT);
 
-//delay(5000);    //retardo de 5 segundos para inciar la pelea
+delay(3900);    //retardo de 5 segundos para inciar la pelea
 }
 
 void loop() {  
-  //leerDistancia(pinTrigAtras,pinEchoAtras);
+//Serial.println(leerDistancia(pinTrigAtras,pinEchoAtras));
+
   
   if(leerLinea(pinLineaFrente)==Negro&&leerLinea(pinLineaAtras)==Negro){
       //Busqueda del contrincante
     do{
       girarDerecha();
-      }while(leerDistancia(pinTrigFrente,pinEchoFrente)>distanciaMinima); 
+      }while(leerDistancia(pinTrigFrente,pinEchoFrente)>distanciaMinima&&leerDistancia(pinTrigFrente,pinEchoFrente)<=distanciaMinima); 
       
     //Ataques
-    while(leerDistancia(pinTrigFrente,pinEchoFrente)<=distanciaMinima){
+    while(leerDistancia(pinTrigFrente,pinEchoFrente)<=distanciaMinima&&leerLinea(pinLineaFrente)==Negro&&leerLinea(pinLineaAtras)==Negro){
+      Serial.println("Ataque frontal");
       moverFrente();
       delay(50);
       }
@@ -66,28 +68,31 @@ void loop() {
         
       girarIzquierda();
       
-      }while(leerDistancia(pinTrigAtras,pinEchoAtras)>distanciaMinima); 
+      }while(leerDistancia(pinTrigAtras,pinEchoAtras)>distanciaMinima&&leerDistancia(pinTrigFrente,pinEchoFrente)>distanciaMinima); 
 
       while(leerDistancia(pinTrigAtras,pinEchoAtras)<=distanciaMinima&&leerLinea(pinLineaFrente)==Negro&&leerLinea(pinLineaAtras)==Negro){
       moverAtras();
+      Serial.println("Ataque trasero");
        delay(50);
       }
-    }
+
     
-    if(leerLinea(pinLineaFrente)==Blanco&&leerLinea(pinLineaFrente)==Negro&&leerLinea(pinLineaAtras)==Negro){
-      moverAtras();
-      delay(1000);
+    if(leerLinea(pinLineaFrente)==Blanco&&leerLinea(pinLineaAtras)==Negro){
+      
+      moverFrente();
+      delay(250);
       girarDerecha();
-      delay(1000);
+      delay(250);
       }
 
-      if(leerLinea(pinLineaAtras)==Blanco){
-      moverFrente();
-      delay(1000);
+      if(leerLinea(pinLineaAtras)==Blanco&&leerLinea(pinLineaFrente)==Negro){
+      moverAtras();
+      delay(250);
       girarIzquierda();
-      delay(1000);
+      delay(250);
       }
 }
+    }
 
 
 
@@ -100,7 +105,9 @@ int leerDistancia(int pinTrig, int pinEcho) {
   digitalWrite(pinTrig , LOW);
   int dure = pulseIn(pinEcho, HIGH);
   int dist = (dure / 2) / 29.1;
-  Serial.print("Distacia: ");
+  Serial.print("Distacia de ");
+  Serial.print(String(pinTrig));
+  Serial.print(": ");
   Serial.println(dist);
   return dist;
 }
