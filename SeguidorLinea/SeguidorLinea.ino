@@ -76,14 +76,14 @@ void frente(){
     int d2=analogRead(D2);  //Sensor medio derecha
     int d3=analogRead(D3);  //Sensor medio izquierda
     int d4=analogRead(D4);  //Sensor izquierda
- /* Serial.print("\t");
+  Serial.print("\t");
   Serial.print(d1);
   Serial.print("\t");
   Serial.print(d2);
   Serial.print("\t");
   Serial.print(d3);
   Serial.print("\t");
-  Serial.println(d4);*/
+  Serial.println(d4);
   
     if(d1>lineaMin && d2<lineaMin&& d3<lineaMin&& d4<lineaMin){
       return 1;
@@ -109,6 +109,8 @@ if(d1<lineaMin && d2>lineaMin&& d3>lineaMin&& d4<lineaMin){
 
 void loop() {
 //sensor();
+//delay(100);
+
 switch(sensor())
 {
     case 1:
@@ -132,5 +134,5 @@ switch(sensor())
     break;  
   }
   
-//delay(100);
+
 }
